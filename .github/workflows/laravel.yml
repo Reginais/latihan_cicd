@@ -1,4 +1,4 @@
-name: Laravel CI
+name: Laravel CI/CD
 
 on:
   push:
@@ -36,3 +36,18 @@ jobs:
           DB_CONNECTION: sqlite
           DB_DATABASE: ":memory:"
         run: php artisan test
+
+  deploy:
+    needs: laravel-tests
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Simulasi deploy
+        run: |
+          echo "Test lolos, mulai deploy..."
+          echo "git pull"
+          echo "composer install --no-dev"
+          echo "php artisan migrate --force"
+          echo "php artisan config:cache"
+          echo "Deploy selesai"
