@@ -7,5 +7,5 @@ Route::get('/', function () {
 });
 
 Route::get('/about', function () {
-    return 'Halo';
+    return 'Demo CI/CD Laravel';
 });
